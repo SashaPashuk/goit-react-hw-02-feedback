@@ -3,7 +3,6 @@ import s from './components/Feedback.module.scss';
 import FeedbackOptions from './components/FeedbackOptions';
 import Statistics from './components/Statistics';
 
-
 class App extends React.Component {
   state = {
     good: 0,
@@ -31,23 +30,18 @@ class App extends React.Component {
     return (
       <div className={s.statistics}>
         <h2 className="title">Please leave feedback</h2>
-        <FeedbackOptions options={this.handleIncrement} />
+        <FeedbackOptions onLeaveFeedback={this.handleIncrement} />
         <h3 className="title">Statistics</h3>
-
-        {this.countTotalFeedback() === 0 ? (
-          <h3 className="title">No feedback given</h3>
-        ) : (
-          <Statistics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
-        )}
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
+        />
       </div>
     );
   }
 }
-    
+
 export default App;
